@@ -1,0 +1,21 @@
+# Thanks Joe Maples <joe@frap129.org> ~~!
+
+on boot
+    write /sys/devices/system/cpu/cpuquiet/nr_thermal_max_cpus 8
+
+on property:sys.boot_completed=1
+    # Set I/O Scheduler
+    write /sys/block/sda/queue/scheduler maple 
+
+    # Set Swappiness
+    write /proc/sys/vm/swappiness 80
+
+    # Set ReadAhead
+    write /sys/block/sda/queue/read_ahead_kb 128
+
+    # disable iostats
+    write /sys/block/sda/queue/iostats 0
+
+    # backlight dimmer
+    write /sys/module/mdss_fb/parameters/backlight_dimmer 1
+
